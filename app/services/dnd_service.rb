@@ -5,6 +5,12 @@ class DndService
     response
   end
 
+  def monsters
+    response = parse_response(request("/api/monsters"))
+    Rails.cache.write("dnd-monsters", response)
+    response
+  end
+
   def connection
     Faraday.new("https://www.dnd5eapi.co")
   end

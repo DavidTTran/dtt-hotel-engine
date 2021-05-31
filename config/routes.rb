@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       namespace :dnd do
         resources :classes, only: [:index]
+        resources :monsters, only: [:index]
       end
     end
   end
