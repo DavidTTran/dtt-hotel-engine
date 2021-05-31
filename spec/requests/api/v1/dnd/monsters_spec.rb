@@ -8,7 +8,7 @@ describe "MonstersController" do
       expect(response).to be_successful
       info = JSON.parse(response.body, symbolize_names: true)
 
-      expect(info[:results].count).to eq(12)
+      expect(info[:results]).not_to be_empty
     end
   end
 end
