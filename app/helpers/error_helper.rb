@@ -1,4 +1,4 @@
-class ErrorHelper
+module ErrorHelper
   def self.standard_error(message)
     {
       status: "Error",
