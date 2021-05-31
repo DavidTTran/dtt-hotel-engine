@@ -7,7 +7,7 @@
 
 [Versions](#versions)
 
-[Testing/Coverage](#testing/coverage)
+[Testing-Coverage](#testing-coverage)
 
 [Useage](#usage)
 - [Classes](#classes)
@@ -26,7 +26,7 @@ https://dtt-hotel-engine.herokuapp.com/
 Ruby Version: `ruby 2.7.3`
 Rails Version: `Rails 6.0.3.7`
 
-## Testing/Coverage
+## Testing-Coverage
 Tested with RSpec and SimpleCov
 
 <img width="948" alt="Screen Shot 2021-05-31 at 2 23 19 PM" src="https://user-images.githubusercontent.com/57076945/120239558-caf6a780-c21b-11eb-862c-5f8cb8bac40f.png">
