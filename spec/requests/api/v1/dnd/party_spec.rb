@@ -39,7 +39,7 @@ describe "PartyController" do
       info = JSON.parse(response.body, symbolize_names: true)
 
       expect(info[:code]).to eq(400)
-      expect(info[:message][:name][0]).to eq("A party by the name Heroes already exists.")
+      expect(info[:messages][:name][0]).to eq("A party by the name Heroes already exists.")
     end
   end
 
@@ -51,7 +51,7 @@ describe "PartyController" do
 
       info = JSON.parse(response.body, symbolize_names: true)
 
-      expect(info).to eq(true)
+      expect(info[:name]).to eq("The Mighty Eight")
     end
   end
 
