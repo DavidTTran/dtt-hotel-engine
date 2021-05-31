@@ -8,7 +8,7 @@ describe "CharactersController" do
       expect(response).to be_successful
       info = JSON.parse(response.body, symbolize_names: true)
 
-      expect(info).to eq([])
+      expect(info[:data]).to eq([])
     end
 
     it "returns all character(s) and info" do
@@ -19,8 +19,8 @@ describe "CharactersController" do
       expect(response).to be_successful
       info = JSON.parse(response.body, symbolize_names: true)
 
-      expect(info.count).to eq(3)
-      info.each do |char|
+      expect(info[:data].count).to eq(3)
+      info[:data].each do |char|
         expect(char[:id]).to be_truthy
       end
     end
@@ -35,9 +35,11 @@ describe "CharactersController" do
       }
 
       post "/api/v1/dnd/characters", params: params
+
       expect(response).to be_successful
       info = JSON.parse(response.body, symbolize_names: true)
-      expect(info[:data][:name]).to eq(params[:name])
+
+      expect(info[:data][:attributes][:name]).to eq(params[:name])
       expect(info[:data][:id]).to be_truthy
     end
   end
@@ -55,10 +57,10 @@ describe "CharactersController" do
       expect(response).to be_successful
       info = JSON.parse(response.body, symbolize_names: true)
 
-      expect(info[:data][:id]).to eq(char.id)
-      expect(info[:data][:name]).to eq(params["name"])
-      expect(info[:data][:level]).to eq(params["level"])
-      expect(info[:data][:character_class]).to eq(params["character_class"])
+      expect(info[:data][:id].to_i).to eq(char.id)
+      expect(info[:data][:attributes][:name]).to eq(params["name"])
+      expect(info[:data][:attributes][:level]).to eq(params["level"])
+      expect(info[:data][:attributes][:character_class]).to eq(params["character_class"])
     end
 
     it "can assign a character to a party" do
@@ -76,7 +78,7 @@ describe "CharactersController" do
       expect(response).to be_successful
       info = JSON.parse(response.body, symbolize_names: true)
 
-      expect(info[:data][:party_id]).to eq(party.id)
+      expect(info[:data][:attributes][:party_id]).to eq(party.id)
     end
   end
 

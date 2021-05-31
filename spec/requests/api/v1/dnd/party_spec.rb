@@ -8,7 +8,7 @@ describe "PartyController" do
       expect(response).to be_successful
       info = JSON.parse(response.body, symbolize_names: true)
 
-      expect(info).to eq([])
+      expect(info[:data]).to eq([])
     end
 
     it "displays all parties" do
@@ -18,8 +18,8 @@ describe "PartyController" do
       get "/api/v1/dnd/parties"
       info = JSON.parse(response.body, symbolize_names: true)
 
-      expect(info[0][:name]).to eq("Avengers")
-      expect(info[1][:name]).to eq("The Mighty Nine")
+      expect(info[:data][0][:attributes][:name]).to eq("Avengers")
+      expect(info[:data][1][:attributes][:name]).to eq("The Mighty Nine")
     end
   end
 
@@ -51,7 +51,7 @@ describe "PartyController" do
 
       info = JSON.parse(response.body, symbolize_names: true)
 
-      expect(info[:name]).to eq("The Mighty Eight")
+      expect(info[:data][:attributes][:name]).to eq("The Mighty Eight")
     end
   end
 

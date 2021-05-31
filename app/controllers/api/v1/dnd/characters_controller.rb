@@ -1,12 +1,13 @@
 class Api::V1::Dnd::CharactersController < ApplicationController
   def index
-    render json: Character.all
+    chars = Character.all
+    render json: CharacterSerializer.new(chars)
   end
 
   def create
     char = Character.new(character_params)
     if char.save
-      render json: { data: char }
+      render json: CharacterSerializer.new(char)
     else
       render json: ErrorHelper.standard_error(char.errors.messages)
     end
@@ -16,14 +17,15 @@ class Api::V1::Dnd::CharactersController < ApplicationController
   def update
     char = Character.find(params[:id])
     if char.update(character_params)
-      render json: { data: char }
+      render json: CharacterSerializer.new(char)
     else
       render json: ErrorHelper.standard_error(char.errors.messages)
     end
   end
 
   def destroy
-    render json: Character.find(params[:id]).destroy
+    char = Character.find(params[:id]).destroy
+    render json: CharacterSerializer.new(char)
   end
 
   private
