@@ -1,22 +1,23 @@
 # README
 
 ## Table of Contents
-[Hosted At](%hostedat)
+[Hosted At](#hostedat)
 
-[Description](%description)
+[Description](#description)
 
-[Versions](%versions)
+[Versions](#versions)
 
-[Testing/Coverage](%testing/coverage)
+[Testing/Coverage](#testing/coverage)
 
-[Useage](%usage)
-- [Classes](%classes)
-- [Monsters](%monsters)
-- [Characters](%characters)
-- [Parties](%parties)
+[Useage](#usage)
+- [Classes](#classes)
+- [Monsters](#monsters)
+- [Characters](#characters)
+- [Parties](#parties)
 
 ## Description
 Code assessment for Hotel Engine. General idea is that you can create (simple) Dungeons and Dragons characters, and assign them to parties.
+
 
 ## Hosted At
 https://dtt-hotel-engine.herokuapp.com/
