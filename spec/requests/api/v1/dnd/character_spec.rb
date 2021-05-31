@@ -26,6 +26,22 @@ describe "CharactersController" do
     end
   end
 
+  describe "post /api/v1/dnd/characters" do
+    it "creates a character with valid info" do
+      params = {
+        name: "John Smith",
+        level: 1,
+        character_class: "rogue"
+      }
+
+      post "/api/v1/dnd/characters", params: params
+      expect(response).to be_successful
+      info = JSON.parse(response.body, symbolize_names: true)
+      expect(info[:data][:name]).to eq(params[:name])
+      expect(info[:data][:id]).to be_truthy
+    end
+  end
+
   describe "patch /api/v1/dnd/characters" do
     it "can update character information" do
       char = create(:character)
@@ -39,10 +55,10 @@ describe "CharactersController" do
       expect(response).to be_successful
       info = JSON.parse(response.body, symbolize_names: true)
 
-      expect(info[:id]).to eq(char.id)
-      expect(info[:name]).to eq(params["name"])
-      expect(info[:level]).to eq(params["level"])
-      expect(info[:character_class]).to eq(params["character_class"])
+      expect(info[:data][:id]).to eq(char.id)
+      expect(info[:data][:name]).to eq(params["name"])
+      expect(info[:data][:level]).to eq(params["level"])
+      expect(info[:data][:character_class]).to eq(params["character_class"])
     end
 
     it "can assign a character to a party" do
@@ -60,7 +76,7 @@ describe "CharactersController" do
       expect(response).to be_successful
       info = JSON.parse(response.body, symbolize_names: true)
 
-      expect(info[:party_id]).to eq(party.id)
+      expect(info[:data][:party_id]).to eq(party.id)
     end
   end
 

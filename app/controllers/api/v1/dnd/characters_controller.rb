@@ -6,7 +6,7 @@ class Api::V1::Dnd::CharactersController < ApplicationController
   def create
     char = Character.new(character_params)
     if char.save
-      redirect_to "/api/v1/dnd/characters"
+      render json: { data: char }
     else
       render json: ErrorHelper.standard_error(char.errors.messages)
     end
@@ -16,7 +16,7 @@ class Api::V1::Dnd::CharactersController < ApplicationController
   def update
     char = Character.find(params[:id])
     if char.update(character_params)
-      render json: char
+      render json: { data: char }
     else
       render json: ErrorHelper.standard_error(char.errors.messages)
     end

@@ -1,12 +1,13 @@
 class Api::V1::Dnd::PartiesController < ApplicationController
   def index
-    render json: Party.all
+    parties = Party.all
+    render json: parties.to_json(include: [:characters])
   end
 
   def create
     party = Party.new(party_params)
     if party.save
-      redirect_to "/api/v1/dnd/parties"
+      render json: Party.all
     else
       render json: ErrorHelper.standard_error(party.errors.messages)
     end
