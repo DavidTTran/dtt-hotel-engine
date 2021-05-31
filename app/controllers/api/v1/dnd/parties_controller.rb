@@ -6,15 +6,19 @@ class Api::V1::Dnd::PartiesController < ApplicationController
   def create
     party = Party.new(party_params)
     if party.save
-      redirect_to :api_v1_dnd_parties_route
+      redirect_to "/api/v1/dnd/parties"
     else
-      render json: { status: "error", code: 400, message: party.errors.messages }
+      render json: ErrorHelper.standard_error(party.errors.messages)
     end
   end
 
   def update
-    params = party_params
-    render json: Party.find(params[:id]).update(params)
+    party = Party.find(params[:id])
+    if party.update(party_params)
+      render json: party
+    else
+      render json: ErrorHelper.standard_error(party.errors.messages)
+    end
   end
 
   def destroy

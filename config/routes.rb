@@ -4,11 +4,9 @@ Rails.application.routes.draw do
       namespace :dnd do
         resources :classes, only: [:index]
         resources :monsters, only: [:index]
-        resources :parties, only: [:index, :update, :destroy]
-        post "/parties/new", to: "parties#create"
+        resources :parties
 
-        resources :characters, only: [:index, :update, :destroy]
-        post "/characters/new", to: "characters#create"
+        resources :characters
       end
     end
   end
