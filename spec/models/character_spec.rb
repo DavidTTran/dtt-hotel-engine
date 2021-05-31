@@ -25,7 +25,7 @@ describe Character do
 
     it "requires a valid level" do
       john = Character.new(name: "John", character_class: "paladin", level: -1)
-      smith = Character.new(name: "John", character_class: "paladin", level: 25)
+      smith = Character.new(name: "John", character_class: "paladin", level: 21)
 
       expect(john.save).to eq(false)
       expect(smith.save).to eq(false)

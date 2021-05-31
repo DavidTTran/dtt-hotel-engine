@@ -8,7 +8,7 @@ class Api::V1::Dnd::CharactersController < ApplicationController
     if char.save
       redirect_to "/api/v1/dnd/characters"
     else
-      render json: ErrorHelper.standard_error(party.errors.messages)
+      render json: ErrorHelper.standard_error(char.errors.messages)
     end
 
   end
@@ -18,17 +18,17 @@ class Api::V1::Dnd::CharactersController < ApplicationController
     if char.update(character_params)
       render json: char
     else
-      render json: ErrorHelper.standard_error(party.errors.messages)
+      render json: ErrorHelper.standard_error(char.errors.messages)
     end
   end
 
-  def delete
+  def destroy
     render json: Character.find(params[:id]).destroy
   end
 
   private
 
   def character_params
-    params.permit(:name, :level, :class, :party_id)
+    params.permit(:name, :level, :character_class, :party_id)
   end
 end

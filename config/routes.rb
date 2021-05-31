@@ -5,7 +5,6 @@ Rails.application.routes.draw do
         resources :classes, only: [:index]
         resources :monsters, only: [:index]
         resources :parties
-
         resources :characters
       end
     end
