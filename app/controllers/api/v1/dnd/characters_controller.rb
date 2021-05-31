@@ -4,6 +4,14 @@ class Api::V1::Dnd::CharactersController < ApplicationController
     render json: CharacterSerializer.new(chars)
   end
 
+  def show
+    char = Character.find(params[:id])
+    render json: CharacterSerializer.new(char)
+
+  rescue ActiveRecord::RecordNotFound => e
+    render json: ErrorHelper.standard_error(e.message)
+  end
+
   def create
     char = Character.new(character_params)
     if char.save
@@ -11,7 +19,6 @@ class Api::V1::Dnd::CharactersController < ApplicationController
     else
       render json: ErrorHelper.standard_error(char.errors.messages)
     end
-
   end
 
   def update
@@ -26,6 +33,9 @@ class Api::V1::Dnd::CharactersController < ApplicationController
   def destroy
     char = Character.find(params[:id]).destroy
     render json: CharacterSerializer.new(char)
+
+  rescue ActiveRecord::RecordNotFound => e
+    render json: ErrorHelper.standard_error(e.message)
   end
 
   private
