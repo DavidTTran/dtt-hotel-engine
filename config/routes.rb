@@ -6,6 +6,9 @@ Rails.application.routes.draw do
         resources :monsters, only: [:index]
         resources :parties, only: [:index, :update, :destroy]
         post "/parties/new", to: "parties#create"
+
+        resources :characters, only: [:index, :update, :destroy]
+        post "/characters/new", to: "characters#create"
       end
     end
   end
