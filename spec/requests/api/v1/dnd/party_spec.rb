@@ -23,10 +23,10 @@ describe "PartyController" do
     end
   end
 
-  describe "post /api/v1/dnd/parties" do
+  describe "post /api/v1/dnd/parties/new" do
     it "creates a party" do
       params = { name: "Heroes" }
-      post "/api/v1/dnd/parties", params: params
+      post "/api/v1/dnd/parties/new", params: params
 
       expect(Party.count).to eq(1)
     end
@@ -35,7 +35,7 @@ describe "PartyController" do
       Party.create(name: "Heroes")
       params = { name: "Heroes" }
 
-      post "/api/v1/dnd/parties", params: params
+      post "/api/v1/dnd/parties/new", params: params
       info = JSON.parse(response.body, symbolize_names: true)
 
       expect(info[:code]).to eq(400)
